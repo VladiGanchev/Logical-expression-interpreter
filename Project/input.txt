@@ -1,0 +1,13 @@
+DEFINE func1(a,b): "a&b"
+DEFINE func2(a,b,c): "func1(a,b)|c"
+DEFINE func3(a,b,c,d): "a&(b|c)&!d"
+DEFINE func4(a,b,c): "a&b|c|!d"
+DEFINE func5(a,b,c,d): "func1(a,b)&func2(a,b,c)&func3(d)"
+SOLVE func1(1,0)
+SOLVE func2(1,0,1)
+ALL func1->a,b: func1
+ALL func2->a,b,c: func2
+FIND
+PRINT func1(a,b)
+PRINT func2(a,b,c)
+PRINT func3(a,b,c,d)
